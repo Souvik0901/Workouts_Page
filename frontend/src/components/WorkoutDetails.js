@@ -20,9 +20,15 @@ const WorkoutDetails = ({ workout }) => {
 
   return (
     <div className="workout-details">
-      <h4>{workout.title}</h4>
-      <p><strong>Load (kg): </strong>{workout.load}</p>
-      <p><strong>Number of reps: </strong>{workout.reps}</p>
+      <h4>{workout.username}</h4>
+      <p><strong>EmailID : </strong>{workout.email}</p>
+      <p><strong>About : </strong>{workout.about}</p>
+      <p><strong>Designation : </strong>{workout.designation}</p>
+      <p><strong>Skills : </strong>{workout.skills}</p>
+      <p><strong>Education : </strong>{workout.education}</p>
+      <p><strong>Contact No. : </strong>{workout.contact}</p>
+      <p><strong>Address : </strong>{workout.address}</p>
+      <p><strong>SocialMedia : </strong>{workout.socialmedia}</p>
       <p>{workout.createdAt}</p>
       <span className="material-symbols-outlined" onClick = {handleClick}>delete</span>
     </div>

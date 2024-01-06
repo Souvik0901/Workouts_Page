@@ -4,9 +4,15 @@ import { useWorkoutsContext } from '../hooks/useWorkoutsContext'
 
 const WorkoutForm = () => {
   const {dispatch} = useWorkoutsContext()
-  const [title, setTitle] = useState('')
-  const [load, setLoad] = useState('')
-  const [reps, setReps] = useState('')
+  const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
+  const [about, setAbout] = useState('')
+  const [designation, setDesignation] = useState('')
+  const [skills, setSkills] = useState('')
+  const [education, setEducation] = useState('')
+  const [contact, setContact] = useState('')
+  const [address, setAddress] = useState('')
+  const [socialmedia, setSocialmedia] = useState('')
   const [error, setError] = useState(null)
   const [emptyFields, setEmptyFields] = useState([])
 
@@ -15,7 +21,7 @@ const WorkoutForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    const workout = {title, load, reps}
+    const workout = {username, email, about, designation,skills,education, contact, address, socialmedia}
     
     const response = await fetch('/api/workouts', {
       method: 'POST',
@@ -34,9 +40,15 @@ const WorkoutForm = () => {
     }
     if (response.ok) {
       setError(null)
-      setTitle('')
-      setLoad('')
-      setReps('')
+      setUsername('')
+      setEmail('')
+      setAbout('')
+      setDesignation('')
+      setSkills('')
+      setEducation('')
+      setContact('')
+      setAddress('')
+      setSocialmedia('')
       dispatch({type: 'CREATE_WORKOUT', payload: json})
       setEmptyFields([])
 
@@ -46,33 +58,81 @@ const WorkoutForm = () => {
 
   return (
     <form className="create" onSubmit={handleSubmit}> 
-      <h3>Add a New Workout</h3>
+      <h3>Add the Profile Details</h3>
 
-      <label>Excersize Title:</label>
+      <label>Username :</label>
       <input 
         type="text" 
-        onChange={(e) => setTitle(e.target.value)} 
-        value={title}
-        className= {emptyFields.includes('title')?'error':''}
+        onChange={(e) => setUsername(e.target.value)} 
+        value={username}
+        className= {emptyFields.includes('username')?'error':''}
       />
 
-      <label>Load (in kg):</label>
+      <label>Email ID :</label>
+      <input 
+        type="email" 
+        onChange={(e) => setEmail(e.target.value)} 
+        value={email}
+        className= {emptyFields.includes('email')?'error':''}
+      />
+
+      <label>About :</label>
+      <input 
+        type="text" 
+        onChange={(e) => setAbout(e.target.value)} 
+        value={about}
+        className= {emptyFields.includes('about')?'error':''}
+      />
+
+      <label>Designation :</label>
+      <input 
+        type="text" 
+        onChange={(e) => setDesignation(e.target.value)} 
+        value={designation}
+        className= {emptyFields.includes('designation')?'error':''}
+      />
+
+      <label>Skills :</label>
+      <input 
+        type="text" 
+        onChange={(e) => setSkills(e.target.value)} 
+        value={skills}
+        className= {emptyFields.includes('skills')?'error':''}
+      />  
+
+      <label>Education :</label>
+      <input 
+        type="text" 
+        onChange={(e) => setEducation(e.target.value)} 
+        value={education}
+        className= {emptyFields.includes('education')?'error':''}
+      />  
+
+      <label>Contact No. :</label>
       <input 
         type="number" 
-        onChange={(e) => setLoad(e.target.value)} 
-        value={load}
-        className= {emptyFields.includes('load')?'error':''}
+        onChange={(e) => setContact(e.target.value)} 
+        value={contact}
+        className= {emptyFields.includes('contact')?'error':''}
       />
 
-      <label>Number of Reps:</label>
+      <label>Address :</label>
       <input 
-        type="number" 
-        onChange={(e) => setReps(e.target.value)} 
-        value={reps} 
-        className= {emptyFields.includes('reps')?'error':''}
+        type="text" 
+        onChange={(e) => setAddress(e.target.value)} 
+        value={address} 
+        className= {emptyFields.includes('address')?'error':''}
       />
 
-      <button>Add Workout</button>
+      <label>Social Media :</label>
+      <input 
+        type="text" 
+        onChange={(e) => setSocialmedia(e.target.value)} 
+        value={socialmedia}
+        className= {emptyFields.includes('socialmedia')?'error':''}
+      />
+
+      <button>Submit</button>
       {error && <div className="error">{error}</div>}
     </form>
   )
